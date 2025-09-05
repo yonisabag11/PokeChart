@@ -69,10 +69,13 @@ if __name__ == '__main__':
 
     print('- Input -')
 
-    # build pokemon data structures
+    # build pokemon data structures, skipping problematic IDs
+    skip_ids = [221, 824, 916, 925, 931, 964, 978, 982]
     pokes = []
     for i in args.numbers:
-        # p = Pokemon(i)
+        if i in skip_ids:
+            print(f"Skipping problematic Pokémon ID: {i}")
+            continue
         p = time_print(Pokemon,f'Loading Pokemon #{i}... ',i)
         pokes.append(p)
 

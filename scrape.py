@@ -31,7 +31,11 @@ pokemon_names = {
     966: 'revavroom', 967: 'cyclizar', 968: 'orthworm', 969: 'glimmet', 970: 'glimmora', 971: 'greavard', 972: 'houndstone', 973: 'flamigo', 974: 'cetoddle', 975: 'cetitan', 976: 'veluza', 977: 'dondozo', 
     978: 'tatsugiri', 979: 'annihilape', 980: 'clodsire', 981: 'farigiraf', 982: 'dudunsparce', 983: 'kingambit', 984: 'great-tusk', 985: 'scream-tail', 986: 'brute-bonnet', 987: 'flutter-mane', 988: 'slither-wing',
     989: 'sandy-shocks', 990: 'iron-treads', 991: 'iron-bundle', 992: 'iron-hands', 993: 'iron-jugulis', 994: 'iron-moth', 995: 'iron-thorns', 996: 'frigibax', 997: 'arctibax', 998: 'baxcalibur', 999: 'gimmighoul',
-    1000: 'gholdengo', 1001: 'wo-chien', 1002: 'chien-pao', 1003: 'ting-lu', 1004: 'chi-yu', 1005: 'roaring-moon', 1006: 'iron-valiant', 1007: 'koraidon', 1008: 'miraidon'
+    1000: 'gholdengo', 1001: 'wo-chien', 1002: 'chien-pao', 1003: 'ting-lu', 1004: 'chi-yu', 1005: 'roaring-moon', 1006: 'iron-valiant', 1007: 'koraidon', 1008: 'miraidon',
+    1009: 'walking-wake', 1010: 'iron-leaves', 1011: 'dipplin', 1012: 'poltchageist', 1013: 'sinistcha',
+    1014: 'okidogi', 1015: 'munkidori', 1016: 'fezandipiti', 1017: 'ogerpon', 1018: 'archaludon',
+    1019: 'hydrapple', 1020: 'gouging-fire', 1021: 'raging-bolt', 1022: 'iron-boulder', 1023: 'iron-crown',
+    1024: 'terapagos', 1025: 'pecharunt'
 }
 
 headers = {
@@ -129,11 +133,10 @@ for n in args.numbers:
             try:
                 pokemon = get_pokemon(n)
                 time.sleep(0.1) # Slow it down so they don't get mad
-            except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError):
-                print(f'Exception on #{n}. (Pokedex is mad)')
-                break
-            
-            print(f"Dex {dex_source} {pokemon['id']} {pokemon['name']} ({', '.join(pokemon['types'])})")
+                print(f"Dex {dex_source} {pokemon['id']} {pokemon['name']} ({', '.join(pokemon['types'])})")
+            except Exception as e:
+                print(f'Exception on #{n}. Skipping. Error: {e}')
+                continue
 
         try:
             # curl https://www.serebii.net/pokemon/art/[001-905].png -o "art_#1.png"
@@ -144,9 +147,9 @@ for n in args.numbers:
                 save_file(f'https://www.serebii.net/swordshield/pokemon/{n:03d}.png', f'game/game_{n:03d}.png')
             else: # New gen images are under different URL
                 save_file(f'https://www.serebii.net/scarletviolet/pokemon/{n:03d}.png', f'game/game_{n:03d}.png')
-        except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError):
-            print(f'Exception on {n}. (Serebii is mad)')
-            break
+        except Exception as e:
+            print(f'Exception on {n} (image download). Skipping. Error: {e}')
+            continue
 
         print('')
 

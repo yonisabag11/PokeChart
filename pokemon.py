@@ -85,6 +85,9 @@ class Pokemon:
         return args
 
     def __init__(self, number: int, prefix: str='art/art_', suffix: str='.png'):
+        # Skip problematic Pokémon IDs
+        if number in [221, 824, 916, 925, 931, 964, 978, 982]:
+            raise ValueError(f"Skipping problematic Pokémon ID: {number}")
         """Create `Pokemon` from Pokedex number `number`.
 
         Args:
@@ -118,6 +121,9 @@ class Pokemon:
         # get color data for pokemon
         self.chart = Chart()
         for prefix, weight, threshold in IMAGE_PREFIXES:
+            # For Pokémon above 905, skip 'game' images (only use 'art')
+            if self.number > 905 and prefix == 'game':
+                continue
             image_file = prefix+'/'+ prefix + '_' + self.string + '.png'
             self.chart.addImage(image_file, weight)
             self.chart.removeBlack(threshold)

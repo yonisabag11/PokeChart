@@ -1,4 +1,17 @@
-# PokéChart
+# PokéChart - Enhanced Fork
+
+This is an enhanced fork of the original [PokéChart](https://github.com/DevinBerchtold/PokeChart) project with significant improvements and expanded Pokémon support.
+
+## What's New in This Fork
+
+- **Complete Generation 9 Support**: Now supports all Pokémon through #1025, including the latest additions like Walking Wake, Iron Leaves, Terapagos, and Pecharunt
+- **Improved Error Handling**: Robust error handling that continues processing even when individual Pokémon fail
+- **Missing Data Management**: Smart handling of problematic Pokémon with fallback data and specialized processing
+- **Enhanced Compatibility**: Better support for newer generation Pokémon with improved image processing logic
+
+---
+
+## Original Description
 
 PokéChart uses k-means grouping to make a simple, aesthetically pleasing chart which represents the primary colors in a Pokémon.
 
@@ -27,7 +40,19 @@ PokéChart uses k-means grouping to make a simple, aesthetically pleasing chart 
     py -m pip install --upgrade requests
     ```
 
-3. Run [`scrape.py`](#scrapepy) to download input data
+    **New in this fork**: You can also use the requirements file for easier setup:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Run [`scrape.py`](#scrapepy) to download input data (now supports Pokémon #1-#1025)
+
+### Enhanced Features in This Fork
+
+- **Extended Pokémon Support**: Complete Generation 9 coverage through Pokémon #1025
+- **Robust Error Handling**: Processing continues even when individual Pokémon fail
+- **Missing Data Management**: Automatic handling of problematic entries with fallback data
+- **Additional Utilities**: New scripts for data validation and missing Pokémon processing
 
 ## Usage
 
@@ -94,9 +119,10 @@ graph LR
     S[scrape.py] --> P[(Pokédex Data)] --> W[who.py] & G[generate.py] --> I[(Output Images)] .-> W
 ```
 
+
 ### `scrape.py`
 
-Downloads Pokédex data from PokéAPI and Pokémon image data Serebii.net. Saves files locally for later use. ([Credits](#credits))
+Downloads Pokédex data from PokéAPI and Pokémon image data Serebii.net. Saves files locally for later use. Now supports Pokémon #1–#1025, including Walking Wake, Iron Leaves, Dipplin, Poltchageist, Sinistcha, Okidogi, Munkidori, Fezandipiti, Ogerpon, Archaludon, Hydrapple, Gouging Fire, Raging Bolt, Iron Boulder, Iron Crown, Terapagos, and Pecharunt. ([Credits](#credits))
 
 ### `generate.py`
 
@@ -112,6 +138,20 @@ Generates circle charts for a list of pokemon. Creates composite images.
 ### `who.py`
 
 Shuffles a list of Pokémon to create a multiple choice "Who's That Pokémon?" game.
+
+### Enhanced Utilities (New in Fork)
+
+#### `generate_missing.py`
+Processes the 8 excluded Pokémon that have data issues. Uses existing art files to generate charts for these Pokémon with fallback data.
+
+#### `check_ids.py`
+Utility to analyze Pokédex data completeness and identify missing or problematic Pokémon IDs.
+
+#### `missing.py`
+Quick identification script to find gaps in the Pokémon dataset.
+
+#### `create_missing_data.py`
+Generates fallback data for problematic Pokémon entries that can't be processed through normal API calls.
 
 ---
 

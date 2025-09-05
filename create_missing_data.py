@@ -1,0 +1,131 @@
+"""
+Research the 8 missing Pokémon to create basic data for them.
+Using publicly available Pokémon information.
+"""
+
+# The 8 missing Pokémon with their basic information
+MISSING_POKEMON_DATA = {
+    221: {
+        "id": 221,
+        "name": "Piloswine",
+        "types": ["ice", "ground"],
+        "stats": {
+            "hp": 100,
+            "attack": 100,
+            "defense": 80,
+            "special-attack": 60,
+            "special-defense": 60,
+            "speed": 50
+        },
+        "description": "A Pokémon covered in thick, brown fur. It is able to endure freezing temperatures."
+    },
+    824: {
+        "id": 824,
+        "name": "Blipbug",
+        "types": ["bug"],
+        "stats": {
+            "hp": 25,
+            "attack": 20,
+            "defense": 20,
+            "special-attack": 25,
+            "special-defense": 45,
+            "speed": 45
+        },
+        "description": "A larval Pokémon. It gathers information and uses it skillfully."
+    },
+    916: {
+        "id": 916,
+        "name": "Oinkologne",
+        "types": ["normal"],
+        "stats": {
+            "hp": 110,
+            "attack": 100,
+            "defense": 75,
+            "special-attack": 59,
+            "special-defense": 80,
+            "speed": 65
+        },
+        "description": "This Pokémon sends a flowerlike scent wafting about. Well-developed muscles in its legs allow it to leap more than 16 feet with no trouble at all."
+    },
+    925: {
+        "id": 925,
+        "name": "Maushold",
+        "types": ["normal"],
+        "stats": {
+            "hp": 74,
+            "attack": 75,
+            "defense": 70,
+            "special-attack": 65,
+            "special-defense": 75,
+            "speed": 111
+        },
+        "description": "The little ones just appeared one day. There are now a hundred or more of them."
+    },
+    931: {
+        "id": 931,
+        "name": "Squawkabilly",
+        "types": ["normal", "flying"],
+        "stats": {
+            "hp": 82,
+            "attack": 96,
+            "defense": 51,
+            "special-attack": 45,
+            "special-defense": 51,
+            "speed": 92
+        },
+        "description": "This Pokémon flies around in flocks of several hundred individuals. It has a calm disposition and never cries."
+    },
+    964: {
+        "id": 964,
+        "name": "Palafin",
+        "types": ["water"],
+        "stats": {
+            "hp": 100,
+            "attack": 70,
+            "defense": 72,
+            "special-attack": 53,
+            "special-defense": 62,
+            "speed": 100
+        },
+        "description": "This Pokémon changes its appearance if it hears its allies calling for help."
+    },
+    978: {
+        "id": 978,
+        "name": "Tatsugiri",
+        "types": ["dragon", "water"],
+        "stats": {
+            "hp": 68,
+            "attack": 50,
+            "defense": 60,
+            "special-attack": 120,
+            "special-defense": 95,
+            "speed": 82
+        },
+        "description": "This Pokémon tricks others by mimicking the appearance of other species."
+    },
+    982: {
+        "id": 982,
+        "name": "Dudunsparce",
+        "types": ["normal"],
+        "stats": {
+            "hp": 125,
+            "attack": 100,
+            "defense": 80,
+            "special-attack": 85,
+            "special-defense": 75,
+            "speed": 55
+        },
+        "description": "This Pokémon can dig straight down to a depth of over six miles while burrowing."
+    }
+}
+
+import json
+
+# Save this data to a separate file
+with open('missing_pokemon_data.json', 'w', encoding='utf-8') as f:
+    json.dump(MISSING_POKEMON_DATA, f, indent=2, ensure_ascii=False)
+
+print("Created missing_pokemon_data.json with basic data for the 8 missing Pokémon")
+print("Missing Pokémon:")
+for pid, data in MISSING_POKEMON_DATA.items():
+    print(f"  {pid}: {data['name']} ({', '.join(data['types'])})")
