@@ -1,5 +1,11 @@
 # PokéChart - Enhanced Fork
 
+## DISCLAIMER!!!
+
+This is not my original work! I just added some features and fixed some stuff that wasn't working properly for me. All credit goes to the original author for the base project.
+
+---
+
 This is an enhanced fork of the original [PokéChart](https://github.com/DevinBerchtold/PokeChart) project with significant improvements and expanded Pokémon support.
 
 ## What's New in This Fork
